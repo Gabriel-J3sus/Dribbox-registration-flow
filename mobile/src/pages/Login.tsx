@@ -5,12 +5,12 @@ import InputComponent from '../Components/Input';
 import ButtonComponent from '../Components/Button';
 import LinkButton from '../Components/LinkButton';
 
-import PagesProps from '../Interface/PagesProps';
+import { IPagesProps } from '../Interface';
 
 import { Container, Wrapper, Title, FormContainer, ButtonContainer } from '../styles/Pages/login';
 
 
-export default function Login({ title }: PagesProps) {
+export default function Login({ title }: IPagesProps) {
   const navigation = useNavigation();
 
   function handleNavigateToDashboard() {

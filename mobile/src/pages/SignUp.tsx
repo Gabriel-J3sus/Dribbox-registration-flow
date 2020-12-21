@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import PagesProps from '../Interface/PagesProps';
+import { IPagesProps } from '../Interface';
 
 import InputComponent from '../Components/Input';
 import ButtonComponent from '../Components/Button';
@@ -9,7 +9,7 @@ import LinkButton from '../Components/LinkButton';
 
 import { Container, Wrapper, Title, FormContainer, ButtonContainer } from '../styles/Pages/signup';
 
-export default function SignUp({ title }: PagesProps) {
+export default function SignUp({ title }: IPagesProps) {
   const navigation = useNavigation();
 
   function handleNavigateToLogin() {

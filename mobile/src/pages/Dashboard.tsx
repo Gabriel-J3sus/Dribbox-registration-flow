@@ -1,10 +1,10 @@
 import React from 'react';
 
-import PagesProps from '../Interface/PagesProps';
+import { IPagesProps } from '../Interface';
 
 import { Container, Wrapper, Title, } from '../styles/Pages/landing';
 
-export default function Dashboard({ title }: PagesProps) {
+export default function Dashboard({ title }: IPagesProps) {
     
     return (
         <Container>

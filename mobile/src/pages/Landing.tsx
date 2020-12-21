@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import PagesProps from '../Interface/PagesProps';
+import { IPagesProps } from '../Interface';
 
 import ButtonComponent from '../Components/Button';
 import LinkButton from '../Components/LinkButton';
 
 import { Container, Wrapper, Welcoming, Title, DescriptionContainer, Description } from '../styles/Pages/landing';
 
-export default function Landing({ title }: PagesProps) {
+export default function Landing({ title }: IPagesProps) {
     const navigation = useNavigation();
 
     function handleNavigateToLogin() {

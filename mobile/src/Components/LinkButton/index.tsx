@@ -2,12 +2,9 @@ import React from 'react';
 
 import { LinkButtonContainer, LinkButtonText } from './styles';
 
-interface LinkProps {
-    handleNavigate: () => void;
-    title: string
-}
+import { ILinkProps } from '../../Interface';
 
-export default function LinkButton({ handleNavigate, title }: LinkProps) {
+export default function LinkButton({ handleNavigate, title }: ILinkProps) {
     return (
         <LinkButtonContainer onPress={handleNavigate}> 
           <LinkButtonText> {title} </LinkButtonText>
