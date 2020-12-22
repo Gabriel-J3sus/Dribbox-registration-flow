@@ -1,15 +1,13 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-    flex: 1;
-    justify-content: space-between;
-    align-items: center;
+import { ContainerStyle, WrapperStyle, TitleStyle } from '../commonStyles';
 
-    background: #FFF;
+export const Container = styled.View`
+    ${ContainerStyle};
 `;
 
 export const Wrapper = styled.View`
-    width: 100%;
+    ${WrapperStyle};
 `;
 
 export const Welcoming = styled.Text`
@@ -22,10 +20,9 @@ export const Welcoming = styled.Text`
 `;
 
 export const Title = styled.Text`
-    font-family: 'Roboto_700Bold';
+    ${TitleStyle};
     font-size: 38px;
     line-height: 45px;
-    color: #22215B;
 `;
 
 export const DescriptionContainer = styled.View`

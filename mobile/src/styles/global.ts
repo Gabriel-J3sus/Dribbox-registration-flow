@@ -11,5 +11,5 @@ export const ContentWrapper = styled.View`
     flex: 1;
     padding: 0 30px 28px;
     margin-top: -200px;
-    bottom:0;
+    bottom: 0;
 `;

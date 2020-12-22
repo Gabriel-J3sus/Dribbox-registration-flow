@@ -1,28 +1,23 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-    flex: 1;
-    justify-content: space-between;
-    align-items: center;
+import { ContainerStyle, WrapperStyle, TitleStyle, FormContainerStyle, ButtonContainerStyle } from '../commonStyles';
 
-    background: #FFF;
+export const Container = styled.View`
+    ${ContainerStyle};
 `;
 
 export const Wrapper = styled.View`
-    width: 100%;
+    ${WrapperStyle};
 `;
 
 export const Title = styled.Text`
-    font-family: 'Roboto_700Bold';
-    font-size: 28px;
-    line-height: 33px;
-    color: #22215B;
+    ${TitleStyle};
 `;
 
 export const FormContainer = styled.View`
-    margin-top: 40px;
+    ${FormContainerStyle};
 `;
 
 export const ButtonContainer = styled.View`
-    margin-top: 5px;
+    ${ButtonContainerStyle};
 `;

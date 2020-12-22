@@ -27,13 +27,13 @@ export default function SignUp({ title }: IPagesProps) {
             <InputComponent placeholder='Confirmar senha' />
 
             <ButtonContainer>
-              <ButtonComponent title='Sign in' handleNavigate={() => {}}/>
+              <ButtonComponent title='Sign up' handleNavigate={() => {}}/>
             </ButtonContainer>
           </FormContainer>
 
         </Wrapper>
         
-        <LinkButton title='Go to sign in' handleNavigate={handleNavigateToLogin} />
+        <LinkButton title='Sign in' handleNavigate={handleNavigateToLogin} />
       </Container>
   );
 }

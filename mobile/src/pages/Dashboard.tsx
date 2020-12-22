@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IPagesProps } from '../Interface';
 
-import { Container, Wrapper, Title, } from '../styles/Pages/landing';
+import { Container, Wrapper, Title, } from '../styles/Pages/dashboard';
 
 export default function Dashboard({ title }: IPagesProps) {
     
