@@ -32,14 +32,14 @@ export default {
 	async show(request: Request, response: Response) {
 		const { email, password, } = request.body;
 
-    const usersRepository = getRepository(User);
+    	const usersRepository = getRepository(User);
     
 		try {
 			const user = await usersRepository.findOneOrFail(email);
     
-      const compareHashedPassorword = await compare(password, user.password)
+      		const compareHashedPassword = await compare(password, user.password)
 
-			if (!compareHashedPassorword) {
+			if (!compareHashedPassword) {
 				return response.status(203).json({ error: 'Wrong password' })
 			}
 

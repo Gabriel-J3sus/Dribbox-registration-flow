@@ -3,12 +3,20 @@ export interface IPagesProps {
 }
 
 export interface IButtonProps {
-    handleNavigate: () => void;
+    onSubmit: () => void;
     title: string;
+}
+
+export interface IErrorProps {
+    style: string;
+    errorStatusTitle: string; 
 }
 
 export interface IInputProps {
     placeholder: string;
+    secureTextEntry: boolean;
+    value: string;
+    onChangeText: (event: any) => void;
 }
 
 export interface ILinkProps {

@@ -1,7 +1,7 @@
 import { css } from 'styled-components/native';
 
 export const ContainerStyle = css`
-    flex: 1;
+    flex: 5;
     justify-content: space-between;
     align-items: center;
 

@@ -30,7 +30,7 @@ export default function Landing({ title }: IPagesProps) {
                     <Description>Join For Free.</Description>
                 </DescriptionContainer>
 
-                <ButtonComponent title='Sign in' handleNavigate={handleNavigateToLogin}/>
+                <ButtonComponent title='Sign in' onSubmit={handleNavigateToLogin}/>
             </Wrapper>
 
             <LinkButton title='Create Account' handleNavigate={handleNavigateToSignUp} />

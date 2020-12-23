@@ -4,8 +4,14 @@ import { InputText } from './styles';
 
 import { IInputProps } from '../../Interface';
 
-export default function Input ({ placeholder }: IInputProps) {
+export default function Input ({ placeholder, secureTextEntry, value, onChangeText }: IInputProps) {
     return (
-        <InputText placeholder={placeholder} />
+        <InputText 
+            placeholder={placeholder} 
+            secureTextEntry={secureTextEntry} 
+            placeholderTextColor="#999999" 
+            value={value}
+            onChangeText={onChangeText}
+        />
     );
 }
