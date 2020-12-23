@@ -12,13 +12,21 @@ export default {
 
 		const usersRepository = getRepository(User);
 
-		password = await hash(password, 10);
+		try {
+			const userSearch = await usersRepository.findOneOrFail(email);
 
-		const user = usersRepository.create({ email, password });
+			if (userSearch) {
+				return response.json({ error: 'This email already exists' })
+			}
+		} catch(err) {
+			password = await hash(password, 10);
 
-		await usersRepository.save(user);
-
-		return response.status(201).json(UserView.render(user));
+			const user = usersRepository.create({ email, password });
+	
+			await usersRepository.save(user);
+	
+			return response.status(201).json(UserView.render(user));
+		}	
 	},
 	
 	async index(request: Request, response: Response) {
@@ -37,9 +45,9 @@ export default {
 		try {
 			const user = await usersRepository.findOneOrFail(email);
     
-      		const compareHashedPassword = await compare(password, user.password)
+      		const compareHashedPassorword = await compare(password, user.password)
 
-			if (!compareHashedPassword) {
+			if (!compareHashedPassorword) {
 				return response.status(203).json({ error: 'Wrong password' })
 			}
 

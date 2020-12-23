@@ -28,11 +28,23 @@ export default function SignUp({ title }: IPagesProps) {
       if (password === confirmedPassword) {
         const data = { email, password };
       
-        await api.post('users', data);
-          
-        setErrorStatus('none');
-        handleNavigateToLogin();
-      
+        const response = await api.post('users', data);
+        
+        const { error } = response.data;
+
+        switch (error) {
+          //if email exists
+          case 'This email already exists':
+            setErrorStatus('flex')
+            setErrorStatusTitle('Esse email já está cadastrado.');
+          break;
+        
+          default:
+            setErrorStatus('none');
+            handleNavigateToLogin();
+          break;
+        }
+
       } else {
 
         setErrorStatus('flex');

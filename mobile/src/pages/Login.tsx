@@ -38,13 +38,13 @@ export default function Login({ title }: IPagesProps) {
           //if email is wrong
           case 'Wrong email':
             setErrorStatus('flex');
-            setErrorStatusTitle('Email incorreto');
+            setErrorStatusTitle('Email incorreto.');
           break;
 
           //if password is wrong
           case 'Wrong password':
             setErrorStatus('flex');
-            setErrorStatusTitle('Senha incorreta');
+            setErrorStatusTitle('Senha incorreta.');
           break;
       
           default:
@@ -53,8 +53,8 @@ export default function Login({ title }: IPagesProps) {
         }
 
       } catch(err) {
-        console.log('Error ao logar')
         setErrorStatus('flex');
+        setErrorStatusTitle('Erro ao logar.')
       }
 
     } else {
