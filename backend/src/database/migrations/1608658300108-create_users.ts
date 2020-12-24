@@ -14,12 +14,18 @@ export class createUsers1608658300108 implements MigrationInterface {
           isUnique: true, 
           isPrimary: true,
           isGenerated: false,
-          generationStrategy: 'uuid'
+          generationStrategy: 'uuid',
         },
 
         {
           name: 'password',
           type: 'string', 
+        },
+
+        {
+          name: 'token',
+          type: 'string',
+          isUnique: true,  
         }
       ]
     }));

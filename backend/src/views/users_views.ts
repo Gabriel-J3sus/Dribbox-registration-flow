@@ -1,4 +1,3 @@
-import { EntitySchemaOptions } from 'typeorm/entity-schema/EntitySchemaOptions';
 import User from '../models/User';
 
 export default {
@@ -6,6 +5,7 @@ export default {
         return {
             email: user.email,
             password: user.password,
+            token: user.token,
         };
     }
 };

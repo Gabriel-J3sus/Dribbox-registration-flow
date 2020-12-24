@@ -29,10 +29,16 @@ export default function SignUp({ title }: IPagesProps) {
         const data = { email, password };
       
         const response = await api.post('users', data);
-        
-        const { error } = response.data;
 
+        const { error } = response.data;
+        
         switch (error) {
+          //if is not an email
+          case '':
+            setErrorStatus('flex')
+            setErrorStatusTitle('Insira um email válido');
+          break;
+
           //if email exists
           case 'This email already exists':
             setErrorStatus('flex')
