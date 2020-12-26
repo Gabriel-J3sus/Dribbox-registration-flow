@@ -73,7 +73,7 @@ export default {
 				return response.status(203).json({ error: 'Wrong password' })
 			}
 
-			return response.status(202).json({ token: UserView.render(user).token});
+			return response.status(202).json(UserView.render(user));
 
 		}	catch (err) {
 

@@ -1,67 +1,73 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import api from '../services/api';
 
 interface AuthContextData {
   signed: boolean;
-  signIn(): Promise<void>
+  email: string | null;
+  loading: boolean;
+  signIn(email: string, password: string): Promise<any>;
+  signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [errorStatusTitle, setErrorStatusTitle] = useState('Erro');
-  const [errorStatus, setErrorStatus] = useState('none');
+  const [email, setEmail] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  //get items storaged
+  useEffect(() => {
+    async function loadStoragedData() {
+      const storagedEmail = await AsyncStorage.getItem('@RNAuth:user');
+      const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
 
-  async function signIn() {
-    //if password and email fields are empty
-    if (password !== '' && email !== '') {
-      
-      const data = { email, password };
+      if (storagedEmail && storagedToken) {
+        api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
 
-      try {
-        //searching inside the backend
-        const response = await api.post('users/login', data);
-        console.log(response.data);//.token
-        const { error } = response.data;
-
-        switch (error) {
-          //if email is wrong
-          case 'Wrong email':
-            setErrorStatus('flex');
-            setErrorStatusTitle('Email incorreto.');
-          break;
-
-          //if password is wrong
-          case 'Wrong password':
-            setErrorStatus('flex');
-            setErrorStatusTitle('Senha incorreta.');
-          break;
-      
-          default:
-            setErrorStatus('none')
-            // handleNavigateToDashboard();
-        }
-
-      } catch(err) {
-        setErrorStatus('flex');
-        setErrorStatusTitle('Erro ao logar.')
+        setEmail(storagedEmail);
+        setLoading(false);
       }
-
-    } else {
-
-      setErrorStatus('flex');
-      setErrorStatusTitle('Preencha todos os campos');
     }
+
+    loadStoragedData();
+  }, [])
+
+  async function signIn(email: string, password: string) {
+    const data = { email, password };
+    
+    const response = await api.post('users/login', data);
+    
+    setEmail(response.data);
+
+    api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+    
+    //storaging
+    await AsyncStorage.setItem('@RNAuth:user', response.data.email);
+    await AsyncStorage.setItem('@RNAuth:token', response.data.token);
+
+    return response;
   }
 
+  function signOut() {
+    AsyncStorage.clear().then(() => {
+      setEmail(null);
+    })
+  }
+
+ 
+
     return (
-      <AuthContext.Provider value={{ signed: false, signIn}}>
+      <AuthContext.Provider value={{ signed: !!email, email, loading, signIn, signOut }}>
         {children}
       </AuthContext.Provider>
     );
 }
 
-export default AuthContext;
+//my hook
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  return context;
+}
